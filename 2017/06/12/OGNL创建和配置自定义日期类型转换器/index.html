@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="John Doe">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>ognl创建和配置自定义日期类型转换器 - Hexo</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="说">说</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">说IT</h1>
+        <h3 class="cover-siteTitle">做产品，写代码</h3>
+        <p class="cover-siteDesc">一个关注技术与人文的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-telegram">
+                <a href="http://t.me/kunyintang" target="_blank" title="telegram" ref="friend">
+                    <i class="fa fa-telegram"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-instagram">
+                <a href="https://www.instagram.com/mtangsir/" target="_blank" title="instagram" ref="friend">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-twitter">
+                <a href="https://twitter.com/tangkunyin" target="_blank" title="twitter" ref="friend">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/tangkunyin" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/big-front-end" data-name="前端">前端</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/server-side" data-name="后台">后台</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/design" data-name="设计">设计</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/resource" data-name="资源">资源</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2017-06-12">2017-06-12</span>
+                </p>
+                <p></p>
+            </div>
+            <h2 class="post-title">OGNL创建和配置自定义日期类型转换器</h2>
+            <div class="post-meta">
+                本文总共7080个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="OGNL"><a href="#OGNL" class="headerlink" title="OGNL"></a>OGNL</h1><p><code>OGNL</code> 中文名 <code>对象图导航语言</code> 是 <code>Object-Graph Navigation Language</code> 的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。</p>
+<h1 id="基于OGNL的类型转换器"><a href="#基于OGNL的类型转换器" class="headerlink" title="基于OGNL的类型转换器"></a>基于OGNL的类型转换器</h1><p>Struts2的类型转换器都需要实现一个TypeConverter接口，该接口位于ognl.jar包内，也是就Struts2框架的转换器使用了OGNL技术。该接口定义了一个convertValue()方法，实现该接口的类型转换器实现类都需要重写该方法来进行类型转换。OGNL还提供了一个实现TypeConverter接口的类DefaultTypeConverter，开发者只要继承该类，就可以开发类型转换器的实现类。</p>
+<p>DefaultTypeConverter类的子类需要重写convertValue()方法，来实现字符串类型与复合类型之间的双向转换。convertValue()方法有三个参数：Map context：该参数为类型转换环境的上下文内容；Object value：该参数为需要转换的参数；Class toType：该参数指的是转换目标的类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PointConverter</span> <span class="keyword">extends</span> <span class="title">DefaultTypeConverter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">convertValue</span><span class="params">(Map context,Object value,Class toType)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"正在转换..."</span>);</span><br><span class="line">        <span class="keyword">if</span>(toType==Point.class)&#123;</span><br><span class="line">            String[] p=(String[])value;</span><br><span class="line">            Point point=<span class="keyword">new</span> Point();</span><br><span class="line">            String[] pp=p[<span class="number">0</span>].split(<span class="string">","</span>);</span><br><span class="line">            point.setX(pp[<span class="number">0</span>]);</span><br><span class="line">            point.setY(pp[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">return</span> point;        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(toType==String.class)&#123;</span><br><span class="line">            Point point=(Point) value;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&lt;"</span>+point.getX()+<span class="string">","</span>+point.getY()+<span class="string">"&gt;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>convertValue()方法是通过toType的类型判断来实现双向转换的</p>
+<h1 id="基于Struts2的类型转换器"><a href="#基于Struts2的类型转换器" class="headerlink" title="基于Struts2的类型转换器"></a>基于Struts2的类型转换器</h1><p>Struts2框架提供了一个类型转换器的StrutsTypeConverter抽象类，开发者可以继承该类来开发自定义的类型转换器实现类。 该抽象类实际上继承了DefaultTypeConverter类，在该类的基础上进行了简化。StrutsTypeConverter抽象类是Struts2框架中类型转换器的基础，该类中提供了两个抽象方法，这两个抽象方法分别实现“form字符串参数-Struts复合类型”之间的双向转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PointConverter2</span> <span class="keyword">extends</span> <span class="title">StrutsTypeConverter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义convertFromString方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">convertFromString</span><span class="params">(Map arg0, String[] arg1, Class arg2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">"正在转换：从字符串转换到复合类型..."</span>);</span><br><span class="line">        Point point=<span class="keyword">new</span> Point();</span><br><span class="line">        String[] pp=arg1[<span class="number">0</span>].split(<span class="string">","</span>);</span><br><span class="line">        point.setX(pp[<span class="number">0</span>]);</span><br><span class="line">        point.setY(pp[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> point;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义convertToString方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">convertToString</span><span class="params">(Map arg0, Object arg1)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        Point point=(Point) arg1;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&lt;"</span>+point.getX()+<span class="string">","</span>+point.getY()+<span class="string">"&gt;"</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义日期类型转换器例子"><a href="#自定义日期类型转换器例子" class="headerlink" title="自定义日期类型转换器例子"></a>自定义日期类型转换器例子</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><pre><code>idea
+Java
+Maven
+Struts2
+Tomcat
+</code></pre><h2 id="pom-xml-配置-dependencies"><a href="#pom-xml-配置-dependencies" class="headerlink" title="pom.xml 配置 dependencies"></a>pom.xml 配置 dependencies</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.16.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="util包-DateConverter类"><a href="#util包-DateConverter类" class="headerlink" title="util包 DateConverter类"></a>util包 DateConverter类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.conversion.TypeConversionException;</span><br><span class="line"><span class="keyword">import</span> org.apache.struts2.util.StrutsTypeConverter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateConverter</span> <span class="keyword">extends</span> <span class="title">StrutsTypeConverter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//支持转换的多种日期格式,可增加时间格式</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DateFormat[] dfs = &#123;</span><br><span class="line">            <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日"</span>),</span><br><span class="line">            <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy/MM/dd"</span>),</span><br><span class="line">            <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>),</span><br><span class="line">            <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy@MM@dd"</span>)</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将指定格式字符串转换为日期类型</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map     类型转换环境的上下文内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> strings 需要转换的参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aClass  转换目标的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">convertFromString</span><span class="params">(Map map, String[] strings, Class aClass)</span> </span>&#123;</span><br><span class="line">        String dateStr = strings[<span class="number">0</span>];            <span class="comment">//获取日期的字符串</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dfs.length; i++) &#123;  <span class="comment">//遍历日期支持格式,进行转换</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> dfs[i].parse(dateStr);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果遍历完毕后仍没有转换成功,表明出现转换异常</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> TypeConversionException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将日期转换为指定格式字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> o</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToString</span><span class="params">(Map map, Object o)</span> </span>&#123;</span><br><span class="line">        Date date = (Date) o;</span><br><span class="line">        <span class="comment">//输出的格式是yyyy-MM-dd</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="action包-DateAction类"><a href="#action包-DateAction类" class="headerlink" title="action包 DateAction类"></a>action包 DateAction类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.action;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ValidationAware;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ValidationAware</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> time;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTime</span><span class="params">(Date time)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.time = time;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date time;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="xwork-conversion-properties-配置"><a href="#xwork-conversion-properties-配置" class="headerlink" title="xwork-conversion.properties 配置"></a>xwork-conversion.properties 配置</h2><pre><code>转换类全名=类型转换器类全名
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date=com.util.DateConverter</span><br></pre></td></tr></table></figure>
+<h2 id="测试页面-index-jsp"><a href="#测试页面-index-jsp" class="headerlink" title="测试页面 index.jsp"></a>测试页面 index.jsp</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">contentType</span>=<span class="string">"text/html;charset=UTF-8"</span> <span class="attr">language</span>=<span class="string">"java"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">prefix</span>=<span class="string">"s"</span> <span class="attr">uri</span>=<span class="string">"/struts-tags"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"format.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    日期类型转换器:</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"time"</span> <span class="attr">value</span>=<span class="string">"1993@12@24"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">s:property</span> <span class="attr">value</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">s:fielderror</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="web-xml-配置"><a href="#web-xml-配置" class="headerlink" title="web.xml 配置"></a>web.xml 配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">version</span>=<span class="string">"2.4"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Struts<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Struts<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="struts-xml-配置"><a href="#struts-xml-配置" class="headerlink" title="struts.xml 配置"></a>struts.xml 配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></span><br><span class="line"><span class="meta">        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></span><br><span class="line"><span class="meta">        "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--value 的 message 为指定根目录的 message.properties 配置文件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.custom.i18n.resources"</span> <span class="attr">value</span>=<span class="string">"message"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"format"</span> <span class="attr">class</span>=<span class="string">"com.action.DateAction"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"input"</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="message-properties-修改错误信息配置"><a href="#message-properties-修改错误信息配置" class="headerlink" title="message.properties 修改错误信息配置"></a>message.properties 修改错误信息配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xwork.default.invalid.fieldvalue=\u5b57\u6bb5&quot;&#123;0&#125;&quot;\u7684\u503c\u65e0\u6548</span><br></pre></td></tr></table></figure>
+<pre><code>`\u5b57\u6bb5&quot;{0}&quot;\u7684\u503c\u65e0\u6548` 为 Unicode编码 `字段&quot;{0}&quot;的值无效` 配置文件 `中文` 需要转换成 `Unicode编码`
+</code></pre><p><a href="http://tool.chinaz.com/Tools/Unicode.aspx" target="_blank" rel="noopener">Unicode编码转换网站</a></p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>  <img src="http://p87bi0e6z.bkt.clouddn.com/20180612155505.png" alt="Alt image"></p>
+<h2 id="演示效果"><a href="#演示效果" class="headerlink" title="演示效果"></a>演示效果</h2><h3 id="初始页面"><a href="#初始页面" class="headerlink" title="初始页面"></a>初始页面</h3><p>  <img src="http://p87bi0e6z.bkt.clouddn.com/20180612154744.png" alt="Alt image"></p>
+<h3 id="转换成功"><a href="#转换成功" class="headerlink" title="转换成功"></a>转换成功</h3><p>  <img src="http://p87bi0e6z.bkt.clouddn.com/20180612154823.png" alt="Alt image"></p>
+<h3 id="转换失败"><a href="#转换失败" class="headerlink" title="转换失败"></a>转换失败</h3><p>  <img src="http://p87bi0e6z.bkt.clouddn.com/20180612155005.png" alt="Alt image"></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/idea/">idea</a>
+            
+            <a href="/tags/Java/">Java</a>
+            
+            <a href="/tags/OGNL/">OGNL</a>
+            
+            <a href="/tags/自定义转换器/">自定义转换器</a>
+            
+            <a href="/tags/Struts2/">Struts2</a>
+            
+        </div>
+        
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="help" >急救中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，作者<a href="https://www.tangkunyin.com" target="_blank">唐先森</a>
+            ，Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '01/20/2018',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
